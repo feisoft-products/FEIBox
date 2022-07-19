@@ -1,4 +1,4 @@
-"""The next generation FEIOS API.
+"""The next generation FEIBox API.
 The old feios_utils.funcs will be deprecated soon in (at most) 0.5.0 and will be deleted in (at most) 0.8.0.
 The new API is faster but uses (relatively) more RAM.
 """

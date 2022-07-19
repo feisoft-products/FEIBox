@@ -1,6 +1,6 @@
-FEI ROS version 0.7.0(pre-release;0.7.0)       FEI Help Service 0.1.2(pre-release;0.1.2;python)
-Welcome to FEI ROS.
-This is an operating system that dedicates to operating system.
+FEIBox version 0.7.0(pre-release;0.7.0)       FEI Help Service 0.1.2(pre-release;0.1.2;python)
+Welcome to FEIBox.
+This is an emulator that dedicates to it.
 
 ---------------------------------------------
 
