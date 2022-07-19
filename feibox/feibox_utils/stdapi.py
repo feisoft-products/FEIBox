@@ -13,7 +13,7 @@ import hashlib
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,7,0)
-versuffix = "pre"
+versuffix = "release"
 __null__ = None
 indev_name = "Uranium"
 
