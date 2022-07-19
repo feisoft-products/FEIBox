@@ -13,7 +13,7 @@ if os.name == 'nt':
     print(msg.STD_BOOT)
 else:
     print(msg.STD_BOOT)
-print("Welcome to FEI-ROS.")
+print("Welcome to FEIBox..")
 print(f"Working on {os.name.upper()}")
 print("Wait for key services to setup...")
 time.sleep(2.5)

@@ -13,7 +13,7 @@ import hashlib
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,7,0)
-versuffix = "a2"
+versuffix = "pre"
 __null__ = None
 indev_name = "Uranium"
 
@@ -81,7 +81,7 @@ def _help():
         print(a)
 
 def _version():
-    print(f"FEI OS Version {version[0]}.{version[1]}.{version[2]} {versuffix}")
+    print(f"FEIBox Version {version[0]}.{version[1]}.{version[2]} {versuffix}")
     print("This program and its library is licensed under GPLv3.0+.")
     print(f"Code name {indev_name}.")
 
