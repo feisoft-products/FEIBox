@@ -3,6 +3,7 @@ The old feios_utils.funcs will be deprecated soon in (at most) 0.5.0 and will be
 The new API is faster but uses (relatively) more RAM.
 """
 # Imports.
+import sys
 from . import msg
 import os
 import time
@@ -12,10 +13,10 @@ import pathlib
 import hashlib
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
-version = (0,7,0)
-versuffix = "release"
+version = (0,8,0)
+versuffix = "dev1"
 __null__ = None
-indev_name = "Uranium"
+indev_name = "Jupiter"
 
 # Functions.
 def out(t :str):
@@ -68,6 +69,18 @@ def shutdown_sys(msg :str,secs=5):
     print("Close all applications.")
     time.sleep(secs)
     exit()
+
+def reboot_sys(msg :str,secs=5):
+    print(msg)
+    print(f"Your system is going to reboot in {secs} seconds.")
+    print("Close all applications.")
+    os.chdir(os.path.dirname(os.path.realpath(__file__)))
+    run = sys.executable + "..\feibox.py"
+    async def _in_callback():
+        await os.system(run)
+        exit(time.sleep(secs))
+    _in_callback()
+
 
 def _exit(line :str):
     if len(line) == 4:
