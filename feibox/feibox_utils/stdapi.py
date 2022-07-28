@@ -14,7 +14,7 @@ import hashlib
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,0)
-versuffix = "dev1"
+versuffix = "dev2"
 __null__ = None
 indev_name = "Jupiter"
 
@@ -165,6 +165,11 @@ def _cat(cmd :str):
         f = open(realpth,'r')
         content = f.read()
         print(content)
+
+def _write_file(pth,content='',mode="str"):
+    rpth = _get_file(pth)
+    f = open(rpth,'w')
+    f.write(content)
 
 def _get_passwd_from_file(pwd :str):
     pwd = bytes(pwd,encoding='utf-8')
