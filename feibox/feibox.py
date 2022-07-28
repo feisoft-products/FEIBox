@@ -2,7 +2,7 @@ import sys,os,time
 import feibox_utils.stdapi as stdapi
 import feibox_utils.msg as msg
 import atexit
-atexit.register(os.system,'color 0f && cls')
+atexit.register(os.system,'color 0f && cls' if os.name == 'nt' else 'clear')
 
 ################################
 

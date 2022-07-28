@@ -14,7 +14,7 @@ import hashlib
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,0)
-versuffix = "dev3"
+versuffix = "dev4"
 __null__ = None
 indev_name = "Jupiter"
 
@@ -75,11 +75,9 @@ def reboot_sys(msg :str,secs=5):
     print(f"Your system is going to reboot in {secs} seconds.")
     print("Close all applications.")
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
-    run = sys.executable + "..\feibox.py"
-    async def _in_callback():
-        await os.system(run)
-        exit(time.sleep(secs))
-    _in_callback()
+    run = sys.executable + " " + r"..\feibox.py"
+    os.system(run)
+    exit()
 
 
 def _exit(line :str):
