@@ -4,6 +4,7 @@ The new API is faster but uses (relatively) more RAM.
 """
 # Imports.
 from . import msg
+import sys
 import os
 import time
 import toml
@@ -13,7 +14,7 @@ import hashlib
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,7,0)
-versuffix = "release"
+versuffix = "u48"
 __null__ = None
 indev_name = "Uranium"
 
@@ -68,6 +69,25 @@ def shutdown_sys(msg :str,secs=5):
     print("Close all applications.")
     time.sleep(secs)
     exit()
+
+def reboot_sys(msg :str,secs=5):
+    print(msg)
+    print(f"Your system is going to reboot in {secs} seconds.")
+    print("Close all applications.")
+    def get_start_command():
+        os.chdir(os.path.dirname(os.path.realpath(__file__)))
+        run = sys.executable + " " + r"..\feibox.py"
+        return run
+    def restart_on_posix():
+        if os.fork(): sys.exit()
+        else: time.sleep(secs); os.system(get_start_command())
+    def restart_on_nt():
+        os.system("start" + " " + get_start_command())
+        sys.exit(time.sleep(5))
+    if os.name == 'nt': 
+        restart_on_nt()
+    else:
+        restart_on_posix()
 
 def _exit(line :str):
     if len(line) == 4:
