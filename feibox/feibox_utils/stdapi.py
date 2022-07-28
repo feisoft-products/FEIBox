@@ -14,7 +14,7 @@ import hashlib
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,0)
-versuffix = "dev2"
+versuffix = "dev3"
 __null__ = None
 indev_name = "Jupiter"
 
@@ -240,6 +240,10 @@ def load_cmd(cmd :str):
     try:
         if cmd.startswith("#"):
             return
+        elif cmd.startswith("shutdown"):
+            shutdown_sys(cmd[9:])
+        elif cmd.startswith("reboot"):
+            reboot_sys(cmd[7:])
         elif cmd.startswith("run"):
             _a = runbatch(cmd[4:])
             return
