@@ -14,7 +14,7 @@ import hashlib
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,0)
-versuffix = "dev5"
+versuffix = "dev6"
 __null__ = None
 indev_name = "Jupiter"
 
@@ -80,12 +80,10 @@ def reboot_sys(msg :str,secs=5):
         return run
     def restart_on_posix():
         if os.fork(): sys.exit()
-        else: time.sleep(5); os.system(get_start_command())
+        else: time.sleep(secs); os.system(get_start_command())
     def restart_on_nt():
-        import multiprocessing as mp
-        p1 = mp.Process(target=os.system,args=(get_start_command(),))
-        p1.start()
-        sys.exit()
+        os.system("start" + " " + get_start_command())
+        sys.exit(time.sleep(5))
     if os.name == 'nt': 
         restart_on_nt()
     else:
