@@ -14,7 +14,7 @@ import hashlib
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,0)
-versuffix = "dev4"
+versuffix = "dev5"
 __null__ = None
 indev_name = "Jupiter"
 
@@ -74,11 +74,22 @@ def reboot_sys(msg :str,secs=5):
     print(msg)
     print(f"Your system is going to reboot in {secs} seconds.")
     print("Close all applications.")
-    os.chdir(os.path.dirname(os.path.realpath(__file__)))
-    run = sys.executable + " " + r"..\feibox.py"
-    os.system(run)
-    exit()
-
+    def get_start_command():
+        os.chdir(os.path.dirname(os.path.realpath(__file__)))
+        run = sys.executable + " " + r"..\feibox.py"
+        return run
+    def restart_on_posix():
+        if os.fork(): sys.exit()
+        else: time.sleep(5); os.system(get_start_command())
+    def restart_on_nt():
+        import multiprocessing as mp
+        p1 = mp.Process(target=os.system,args=(get_start_command(),))
+        p1.start()
+        sys.exit()
+    if os.name == 'nt': 
+        restart_on_nt()
+    else:
+        restart_on_posix()
 
 def _exit(line :str):
     if len(line) == 4:
