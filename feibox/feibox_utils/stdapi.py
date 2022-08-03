@@ -11,10 +11,11 @@ import toml
 import getpass
 import pathlib
 import hashlib
+import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,0)
-versuffix = "dev6"
+versuffix = "dev7"
 __null__ = None
 indev_name = "Jupiter"
 
@@ -37,6 +38,15 @@ def clear():
     _cls_cmd = 'cls' if os.name=='nt' else 'clear'
     os.system(_cls_cmd)
     return None
+
+def _get_passwd_from_file(pwd :str):
+    pwd = bytes(pwd,encoding='utf-8')
+    pth = _get_file(r"/usr/passwd/SHA256.sig")
+    hsh = open(pth,'r').read()
+    calc = hashlib.sha256()
+    calc.update(pwd)
+    return calc.hexdigest() == hsh
+
 
 def _out(line :str):
     if len(line) == 3:
@@ -150,6 +160,10 @@ def _su():
         shutdown_sys("Computer is shutting down to protect your system.",3)
         return
 
+def _get_input_line(msg=''):
+    ret = input(msg)
+    return ret
+
 def _calc(expr :str):
     a = run_expr(expr)
     print(a)
@@ -178,13 +192,21 @@ def _write_file(pth,content='',mode="str"):
     f = open(rpth,'w')
     f.write(content)
 
-def _get_passwd_from_file(pwd :str):
-    pwd = bytes(pwd,encoding='utf-8')
-    pth = _get_file(r"/usr/passwd/SHA256.sig")
-    hsh = open(pth,'r').read()
-    calc = hashlib.sha256()
-    calc.update(pwd)
-    return calc.hexdigest() == hsh
+def _write_cmd(cmdargs=None):
+    """TODO Command Line WriteFile. Not completed. FEATURE-001"""
+    def parse_args():
+        p = argparse.ArgumentParser(prog='writefile',description='Tool to write data to a file.')
+
+def write_to_file(dest,content='',mode='str'):
+    """High level interface for file writing."""
+    _write_file(dest,content,mode)
+
+def read_from_file(pth,mode='str'):
+    """High level interface for file reading."""
+    realpth = _get_file(pth)
+    f = open(realpth,'r')
+    content = f.read()
+    return content
 
 def _deep_load_ext(extpth,mode):
     if mode == 'python':
