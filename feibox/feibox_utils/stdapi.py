@@ -15,7 +15,7 @@ import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,0)
-versuffix = "dev7"
+versuffix = "dev7.1"
 __null__ = None
 indev_name = "Jupiter"
 
