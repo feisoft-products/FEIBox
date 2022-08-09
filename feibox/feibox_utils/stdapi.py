@@ -5,6 +5,7 @@ The new API is faster but uses (relatively) more RAM.
 # Imports.
 import sys
 from . import msg
+import re
 import os
 import time
 import toml
@@ -15,7 +16,7 @@ import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,0)
-versuffix = "a1"
+versuffix = "build 375"
 __null__ = None
 indev_name = "Jupiter"
 
@@ -46,6 +47,14 @@ def _get_passwd_from_file(pwd :str):
     calc = hashlib.sha256()
     calc.update(pwd)
     return calc.hexdigest() == hsh
+
+def _change_passwd(oldpwd :str,newpwd :str):
+    if not isinstance(oldpwd,str) and isinstance(newpwd,str): return 3
+    if len(newpwd) <= 6: return 2
+    if not _get_passwd_from_file(oldpwd): return 1
+    calc = hashlib.sha256()
+    calc.update(newpwd)
+    write_to_file(r"/usr/passwd/SHA256.sig",calc.hexdigest())
 
 
 def _out(line :str):
@@ -111,9 +120,11 @@ def _help():
         print(a)
 
 def _version():
+    print(msg.STD_BOOT)
     print(f"FEIBox Version {version[0]}.{version[1]}.{version[2]} {versuffix}")
     print("This program and its library is licensed under GPLv3.0+.")
     print(f"Code name {indev_name}.")
+    print("Under construction.")
 
 def _login():
     passwd = getpass.getpass("Password: ")
