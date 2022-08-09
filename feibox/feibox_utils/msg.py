@@ -20,6 +20,10 @@ def ERR_ENCODING(_e,/):
     Invalid Encoding at {_e}.
     Execution halted.
     """)
+ERR_NOT_ENABLED = """Input and/or script error:ERROR 006
+The function is not enabled.
+Execution halted.
+"""
 FATAL_OS = """System fatal error:FATAL 001
 Host OS Error.
 Report this to https://github.com/devoter-fyc/fei-ros.
