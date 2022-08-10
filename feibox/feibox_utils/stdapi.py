@@ -16,7 +16,7 @@ import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,0)
-versuffix = "build 396 (pre-release)"
+versuffix = "build 400 (0.8.0.fmain.rtp)"
 __null__ = None
 indev_name = "Jupiter"
 
