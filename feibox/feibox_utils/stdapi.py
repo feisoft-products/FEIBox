@@ -16,7 +16,7 @@ import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,0)
-versuffix = "build 400 (0.8.0.fmain.rtp)"
+versuffix = "build 401 (0.8.0.fmain.push_upd.release.1)"
 __null__ = None
 indev_name = "Jupiter"
 
@@ -125,7 +125,6 @@ def _version():
     print(f"FEIBox Version {version[0]}.{version[1]}.{version[2]} {versuffix}")
     print("This program and its library is licensed under GPLv3.0+.")
     print(f"Code name {indev_name}.")
-    print("Under construction.")
 
 def _login():
     passwd = getpass.getpass("Password: ")
