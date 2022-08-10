@@ -16,7 +16,7 @@ import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,0)
-versuffix = "build 376"
+versuffix = "build 377"
 __null__ = None
 indev_name = "Jupiter"
 
@@ -168,7 +168,10 @@ def _su():
         return
     else:
         print("Uh-oh,you entered the wrong password.")
-        shutdown_sys("Computer is shutting down to protect your system.",3)
+        print("Retry? [Y/N]")
+        s = input()
+        if s in ['y','Y','yes']:_su()
+        else: shutdown_sys("Shutting down...",3)
         return
 
 def _get_input_line(msg=''):
