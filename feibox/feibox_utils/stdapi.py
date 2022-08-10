@@ -96,7 +96,7 @@ def reboot_sys(msg :str,secs=5):
     print("Close all applications.")
     def get_start_command():
         os.chdir(os.path.dirname(os.path.realpath(__file__)))
-        run = sys.executable + " " + r"..\feibox.py"
+        run = sys.executable + " " + r"../feibox.py"
         return run
     def restart_on_posix():
         if os.fork(): sys.exit()
@@ -116,7 +116,7 @@ def _exit(line :str):
         exit(line[4:])
 
 def _help():
-    with open(r".\help\init.txt") as f:
+    with open(r"./help/init.txt") as f:
         a = f.read()
         print(a)
 
