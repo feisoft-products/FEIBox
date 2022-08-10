@@ -3,7 +3,6 @@ Welcome to FEIBox.
 This is an emulator that dedicates to it.
 
 ---------------------------------------------
-
 Commonly Used Commands
 help      --           show the help and exit
 run       --           run the code included in a batch script
@@ -24,3 +23,4 @@ The project is licensed under GPLv3+.
 See https://gnu.org.
 
 GitHub @xmlsax,@devoter-fyc,@yizigezi
+PowerAtom.  |fei-soft
