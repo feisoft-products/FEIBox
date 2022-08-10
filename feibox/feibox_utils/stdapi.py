@@ -16,7 +16,7 @@ import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,0)
-versuffix = "build 377"
+versuffix = "build 395 (pre-release)"
 __null__ = None
 indev_name = "Jupiter"
 
@@ -53,6 +53,7 @@ def _change_passwd(oldpwd :str,newpwd :str):
     if len(newpwd) <= 6: return 2
     if not _get_passwd_from_file(oldpwd): return 1
     calc = hashlib.sha256()
+    newpwd = bytes(newpwd,encoding='utf-8')
     calc.update(newpwd)
     write_to_file(r"/usr/passwd/SHA256.sig",calc.hexdigest())
 
@@ -302,6 +303,8 @@ def load_cmd(cmd :str):
             return
         elif cmd == 'su':
             _su()
+        elif cmd.startswith("identify"):
+            _get_passwd_from_file(getpass.getpass("Please enter main password: "))
         elif cmd == 'ver' or cmd == 'version':
             _version()
         elif cmd.startswith("exit"):
