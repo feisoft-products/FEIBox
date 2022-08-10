@@ -16,7 +16,7 @@ import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,0)
-versuffix = "build 395 (pre-release)"
+versuffix = "build 396 (pre-release)"
 __null__ = None
 indev_name = "Jupiter"
 
@@ -175,6 +175,12 @@ def _su():
         else: shutdown_sys("Shutting down...",3)
         return
 
+def _identify():
+    if _get_passwd_from_file(getpass.getpass("Please enter main password: ")):
+        return True
+    else:
+        return False
+
 def _get_input_line(msg=''):
     ret = input(msg)
     return ret
@@ -304,7 +310,8 @@ def load_cmd(cmd :str):
         elif cmd == 'su':
             _su()
         elif cmd.startswith("identify"):
-            _get_passwd_from_file(getpass.getpass("Please enter main password: "))
+            if _identify(): print("Continue.")
+            else: print("This is wrong.Try again.")
         elif cmd == 'ver' or cmd == 'version':
             _version()
         elif cmd.startswith("exit"):
