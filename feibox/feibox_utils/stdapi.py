@@ -143,7 +143,7 @@ def _get_file(pof):
     tmp = pathlib.Path(rawpth)
     tmp2 = tmp.joinpath(".disk")
     finding = str(tmp2)
-    realstr = finding + pof
+    realstr = finding + '/' + pof
     return realstr
 
 def get_file(pof):
