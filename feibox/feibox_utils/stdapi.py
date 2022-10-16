@@ -15,10 +15,11 @@ import hashlib
 import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
-version = (0,8,0)
-versuffix = "build 400 (0.8.0.fmain.rtp)"
+version = (0,8,1)
+versuffix = "build 440 (0.8.1.fprvint.ginger_pre)"
 __null__ = None
-indev_name = "Jupiter"
+__osenv__ = os.name
+indev_name = "Ginger"
 
 # Functions.
 def out(t :str):
@@ -125,7 +126,7 @@ def _version():
     print(f"FEIBox Version {version[0]}.{version[1]}.{version[2]} {versuffix}")
     print("This program and its library is licensed under GPLv3.0+.")
     print(f"Code name {indev_name}.")
-    print("Under construction.")
+    print("DO NOT DISTRIBUTE ILLEGALLY.")
 
 def _login():
     passwd = getpass.getpass("Password: ")
@@ -208,6 +209,7 @@ def _cat(cmd :str):
         content = f.read()
         print(content)
 
+
 def _write_file(pth,content='',mode="str"):
     rpth = _get_file(pth)
     f = open(rpth,'w')
@@ -215,8 +217,13 @@ def _write_file(pth,content='',mode="str"):
 
 def _write_cmd(cmdargs=None):
     """TODO Command Line WriteFile. Not completed. FEATURE-001"""
-    def parse_args():
+    def _inner_cmd():
         p = argparse.ArgumentParser(prog='writefile',description='Tool to write data to a file.')
+        p.add_argument("POF", type=str, help="The path to the destination file.")
+        p.add_argument("DATA", help="The data to be written.")
+        args = p.parse_args(cmdargs)
+        _write_file(args.POF, args.DATA)
+        print("Done, errno 0")
 
 def write_to_file(dest,content='',mode='str'):
     """High level interface for file writing."""
