@@ -1,4 +1,4 @@
-FEIBox version 0.8.0(pre-release;0.8.0)       FEI Help Service 0.1.3(pre-release;0.1.3;python)
+FEIBox version 0.8.1(pre-release;0.8.1)       FEI Help Service 0.1.3(pre-release;0.1.3;python)
 Welcome to FEIBox.
 This is an emulator that dedicates to it.
 

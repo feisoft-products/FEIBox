@@ -15,12 +15,16 @@ ERR_NO_FILE = """Input error:ERROR 004
 No such file.
 Execution halted.
 """
+ERR_NOT_ENOUGH_ARGS = """Input and/or script error:ERROR 005
+Arguments not enough.
+Execution halted.
+"""
 def ERR_ENCODING(_e,/):
-    print(f"""File error:ERROR 005
+    print(f"""File error:ERROR 006
     Invalid Encoding at {_e}.
     Execution halted.
     """)
-ERR_NOT_ENABLED = """Input and/or script error:ERROR 006
+ERR_NOT_ENABLED = """Input and/or script error:ERROR 007
 The function is not enabled.
 Execution halted.
 """

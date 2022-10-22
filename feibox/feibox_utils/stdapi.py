@@ -1,5 +1,5 @@
 """The next generation FEIBox API.
-The old feios_utils.funcs is deprecated in 0.5.0 and will be deleted in (at most) 0.10.0.
+The old feios_utils.funcs is deprecated in 0.5.0 and will be deleted in 0.8.1.
 The new API is faster but uses (relatively) more RAM.
 """
 # Imports.
@@ -16,7 +16,7 @@ import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,1)
-versuffix = "build 440 (0.8.1.fprvint.ginger_pre)"
+versuffix = "build 441 (0.8.1.fprvint.ginger_pre.2)"
 __null__ = None
 __osenv__ = os.name
 indev_name = "Ginger"
@@ -269,13 +269,16 @@ def runbatch(pof):
 
 
 def run(l :list[str]):
-    "Run a list of str."
+    """Run a list of str."""
     for line in l:
         if line.startswith('#'):
             continue
         elif line.startswith("run"):
             _a = runbatch(line[4:])
             continue
+        elif line.startswith("write"):
+            if len(line) <= 6: print(msg.ERR_NOT_ENOUGH_ARGS); return
+            else: _write_cmd(line[6:]); return
         elif line.startswith("cat"):
             _cat(line)
         elif line.startswith("outl"):
@@ -304,6 +307,9 @@ def load_cmd(cmd :str):
         elif cmd.startswith("run"):
             _a = runbatch(cmd[4:])
             return
+        elif cmd.startswith("write"):
+            if len(cmd) <= 6: print(msg.ERR_NOT_ENOUGH_ARGS); return
+            else: _write_cmd(cmd[6:]); return
         elif cmd.startswith("cat"):
             _cat(cmd)
         elif cmd.startswith("outl"):
@@ -331,7 +337,7 @@ def load_cmd(cmd :str):
             print(msg.ERR_NO_COMMAND)
         return
     except (KeyboardInterrupt,EOFError):
-        print("Oops,your interrupt is not graceful!")
+        print("Oops, your interrupt is not graceful!")
         print("To exit,simply `exit`.")
         print("Or end it in taskmgr (NT) or kill it (POSIX).")
         return
