@@ -11,12 +11,13 @@ out       --           print a message and continue on the same line
 outl      --           print a meassage and switch to next line
 ver       --           Check your computer version
 cat       --           Print from STDIN or file.
+write     --           Write something to a file.
+shutdown  --           Shutdown emulator (with a message).
+exit      --           Break emulator immediately.
 --------------------------------------------
 Bug report
 To report a bug,visit https://github.com/feisoft-products/FEIBox/issues an create an issue.
-PLEASE DO NOT SPAM OUR ISSUE TRACKER. WE WILL TRY OUR BEST TO SOLVE YOUR PROBLEMS.
 If you had a problem and already had a solution,visit https://github.com/feisoft-products/FEIBox/pulls and create a pull request.
-We welcome translations.Also contribute at pulls.
 We do not accept feature issues. Dev a sample one and pull so that we can try.
 -------------------------------------------
 Legal

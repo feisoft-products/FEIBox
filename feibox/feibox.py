@@ -1,4 +1,4 @@
-import sys,os,time
+import sys,os,time,toml
 import feibox_utils.stdapi as stdapi
 import feibox_utils.msg as msg
 import atexit
@@ -7,6 +7,10 @@ atexit.register(os.system,'color 0f ' if os.name == 'nt' else 'clear')
 ################################
 
 stdapi.clear()
+a = toml.load(r'./init/config.toml')
+print(a['BRANDING']['name'])
+print("Loading...")
+time.sleep(1)
 if os.name == 'nt':
     os.system("color 2f")
     stdapi.clear()

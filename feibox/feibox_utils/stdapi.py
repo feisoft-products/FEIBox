@@ -1,6 +1,4 @@
 """The next generation FEIBox API.
-The old feios_utils.funcs is deprecated in 0.5.0 and will be deleted in 0.8.1.
-The new API is faster but uses (relatively) more RAM.
 """
 # Imports.
 import sys
@@ -16,7 +14,7 @@ import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,1)
-versuffix = "build 441 (0.8.1.fprvint.ginger_pre.2)"
+versuffix = "build 442 (0.8.1.fprvint.ginger_pre.3chk)"
 __null__ = None
 __osenv__ = os.name
 indev_name = "Ginger"

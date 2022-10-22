@@ -1,11 +1,2 @@
-[container]
-enable=false
-
-[autoupdate]
-enable=false
-
-[autoupdate.ask]
-ask=false
-
-[vdisk]
-enable=true
+[BRANDING]
+name="Startiing FEIBox for developers..."
