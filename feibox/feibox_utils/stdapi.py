@@ -16,7 +16,7 @@ import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,0)
-versuffix = "build 404 (0.8.0.fmain.push_upd.release.minor.115)"
+versuffix = "build 405 (0.8.0.fmain.push_upd.release.minor.116)"
 __null__ = None
 indev_name = "Jupiter"
 

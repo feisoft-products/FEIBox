@@ -1,4 +1,4 @@
-FEIBox version 0.8.0(pre-release;0.8.0)       FEI Help Service 0.1.3(pre-release;0.1.3;python)
+FEIBox version 0.8.0(release;0.8.0)       FEI Help Service 0.1.3(release;0.1.3;python)
 Welcome to FEIBox.
 This is an emulator that dedicates to it.
 
@@ -13,9 +13,6 @@ cat       --           Print from STDIN or file.
 --------------------------------------------
 Bug report
 To report a bug,visit https://github.com/feisoft-products/FEIBox/issues an create an issue.
-PLEASE DO NOT SPAM OUR ISSUE TRACKER. WE WILL TRY OUR BEST TO SOLVE YOUR PROBLEMS.
-If you had a problem and already had a solution,visit https://github.com/feisoft-products/FEIBox/pulls and create a pull request.
-We welcome translations.Also contribute at pulls.
 We do not accept feature issues. Dev a sample one and pull so that we can try.
 -------------------------------------------
 Legal
