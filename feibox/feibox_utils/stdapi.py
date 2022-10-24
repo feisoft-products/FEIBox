@@ -2,6 +2,7 @@
 """
 # Imports.
 import sys
+import warnings
 from . import msg
 import re
 import os
@@ -14,14 +15,15 @@ import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,1)
-versuffix = "build 442 (0.8.1.fprvint.ginger_pre.3chk)"
+versuffix = "build 443 (0.8.1.fprvint.ginger_pre.4pre)"
 __null__ = None
 __osenv__ = os.name
 indev_name = "Ginger"
 
 # Functions.
 def out(t :str):
-    "Printing within line."
+    "Printing within line. TODO: Deprecation: Will be deprecated in 0.8.1."
+    warnings.warn("Will be deprecated in 0.8.1", DeprecationWarning)
     print(t,end="")
     return
 
@@ -29,6 +31,12 @@ def outl(t :str):
     "Printing and start another line."
     print(t)
     return
+
+def out_cmd(t :str):
+    "TODO: Feature-002: improved `out`."
+
+def set_env(cmdargs):
+    "TODO: Feature-003: `set`."
 
 def run_expr(expr :str):
     "Run an expression using exec()."
@@ -48,13 +56,16 @@ def _get_passwd_from_file(pwd :str):
     return calc.hexdigest() == hsh
 
 def _change_passwd(oldpwd :str,newpwd :str):
+    a = 0
     if not isinstance(oldpwd,str) and isinstance(newpwd,str): return 3
-    if len(newpwd) <= 6: return 2
+    if len(newpwd) <= 6: a = 1
     if not _get_passwd_from_file(oldpwd): return 1
     calc = hashlib.sha256()
     newpwd = bytes(newpwd,encoding='utf-8')
     calc.update(newpwd)
     write_to_file(r"/usr/passwd/SHA256.sig",calc.hexdigest())
+    if a == 0: return 0
+    else: return 2
 
 
 def _out(line :str):
@@ -214,7 +225,7 @@ def _write_file(pth,content='',mode="str"):
     f.write(content)
 
 def _write_cmd(cmdargs=None):
-    """TODO Command Line WriteFile. Not completed. FEATURE-001"""
+    """Command Line WriteFile."""
     def _inner_cmd():
         p = argparse.ArgumentParser(prog='writefile',description='Tool to write data to a file.')
         p.add_argument("POF", type=str, help="The path to the destination file.")
