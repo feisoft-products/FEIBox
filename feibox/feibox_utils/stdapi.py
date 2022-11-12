@@ -15,10 +15,11 @@ import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,1)
-versuffix = "build 443 (0.8.1.fprvint.ginger_pre.4pre)"
+versuffix = "build 444 (0.8.1.fprvint.ginger_pre.5chk)"
 __null__ = None
 __osenv__ = os.name
 indev_name = "Ginger"
+lev =  False
 
 # Functions.
 def out(t :str):
@@ -37,6 +38,7 @@ def out_cmd(t :str):
 
 def set_env(cmdargs):
     "TODO: Feature-003: `set`."
+    pass
 
 def run_expr(expr :str):
     "Run an expression using exec()."
@@ -175,6 +177,7 @@ def _su():
     print("Enter Password to continue: ")
     passwd = getpass.getpass()
     if _get_passwd_from_file(passwd):
+        lev = True
         print("Running in levtitated mode.")
         return
     else:
@@ -184,6 +187,10 @@ def _su():
         if s in ['y','Y','yes']:_su()
         else: shutdown_sys("Shutting down...",3)
         return
+
+def _unsu():
+    lev = False
+    print("Switched to normal user.")
 
 def _identify():
     if _get_passwd_from_file(getpass.getpass("Please enter main password: ")):
@@ -331,6 +338,8 @@ def load_cmd(cmd :str):
             return
         elif cmd == 'su':
             _su()
+        elif cmd.startswith("unsu"):
+            _unsu()
         elif cmd.startswith("identify"):
             if _identify(): print("Continue.")
             else: print("This is wrong.Try again.")
