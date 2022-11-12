@@ -6,11 +6,13 @@ Most of FEIBox's versions follow a lifecycle. After that,it would be no longer s
 
 | Version   | Supported           |
 | --------- | ------------------- |
-| 0.8.0     | Currently supported |
-| 0.8.0dev  | EOL  |
-| 0.7.0     | Extended support program |
-| 0.7.0dev- | EOL |
+| 0.8.1dev  | Progressive dev     |
+| 0.8.0     | ESP |
+| 0.8.0dev  | EOL |
+| 0.7.0&lower | EOL |
 
+
+ESP: Extended Support Program, providing no func updates.
 ## Reporting a Vulnerability
 
 For normal security issues, report at issues.
