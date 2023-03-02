@@ -1,4 +1,4 @@
-# Error messages
+"""Error messages for FEIBox."""
 ERR_SPACES = """Input and/or script error:ERROR 001
 There should be a space.
 Execution halted.

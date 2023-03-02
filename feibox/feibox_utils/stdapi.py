@@ -2,6 +2,7 @@
 """
 # Imports.
 import sys
+import builtins
 import warnings
 from . import msg
 import re
@@ -15,11 +16,12 @@ import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,1)
-versuffix = "build 444 (0.8.1.fprvint.ginger_pre.5chk)"
+versuffix = "build 445 (0.8.1.fprvint.ginger_pre.6)"
 __null__ = None
 __osenv__ = os.name
 indev_name = "Ginger"
 lev =  False
+
 
 # Functions.
 def out(t :str):
@@ -38,7 +40,11 @@ def out_cmd(t :str):
 
 def set_env(cmdargs):
     "TODO: Feature-003: `set`."
-    pass
+    p = argparse.ArgumentParser(prog="env", description="""
+    The command to set environment variables.
+    """)
+    p.add_mutually_exclusive_group()
+    return
 
 def run_expr(expr :str):
     "Run an expression using exec()."
@@ -228,7 +234,7 @@ def _cat(cmd :str):
 
 def _write_file(pth,content='',mode="str"):
     rpth = _get_file(pth)
-    f = open(rpth,'w')
+    f = builtins.open(rpth,'w')
     f.write(content)
 
 def _write_cmd(cmdargs=None):
@@ -240,6 +246,7 @@ def _write_cmd(cmdargs=None):
         args = p.parse_args(cmdargs)
         _write_file(args.POF, args.DATA)
         print("Done, errno 0")
+    _inner_cmd(cmdargs)
 
 def write_to_file(dest,content='',mode='str'):
     """High level interface for file writing."""
@@ -248,11 +255,12 @@ def write_to_file(dest,content='',mode='str'):
 def read_from_file(pth,mode='str'):
     """High level interface for file reading."""
     realpth = _get_file(pth)
-    f = open(realpth,'r')
+    f = builtins.open(realpth,'r')
     content = f.read()
     return content
 
 def _deep_load_ext(extpth,mode):
+    """Run extensions directly."""
     if mode == 'python':
         import os
         ret = os.system(f"python {extpth}")
@@ -345,6 +353,9 @@ def load_cmd(cmd :str):
             else: print("This is wrong.Try again.")
         elif cmd == 'ver' or cmd == 'version':
             _version()
+        elif cmd.startswith("creeper"):
+            print("Awwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww man")
+            return
         elif cmd.startswith("exit"):
             _exit(cmd)
         elif cmd.startswith("logout"):

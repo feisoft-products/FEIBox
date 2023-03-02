@@ -1,8 +1,11 @@
+"""FEIBox direct executable module.
+The whole thing is availiable at https://github.com/feisoft-products/feibox.
+Please note that the author keeps the rights to modify the module notices at any time."""
 import sys,os,time,toml
 import feibox_utils.stdapi as stdapi
 import feibox_utils.msg as msg
 import atexit
-atexit.register(os.system,'color 0f ' if os.name == 'nt' else 'clear')
+atexit.register(os.system,'color' if os.name == 'nt' else 'clear')
 
 ################################
 
@@ -12,16 +15,13 @@ print(a['BRANDING']['name'])
 print("Loading...")
 time.sleep(1)
 if os.name == 'nt':
-    os.system("color 2f")
+    os.system("color 8f")
     stdapi.clear()
     print(msg.STD_BOOT)
 else:
     print(msg.STD_BOOT)
 print("Welcome to FEIBox..")
 print(f"Working on {os.name.upper()}")
-print("Wait for key services to setup...")
-time.sleep(2.5)
-print("Starting detect services...")
 time.sleep(2.5)
 print("We have to ensure that is you.")
 if stdapi._login():
