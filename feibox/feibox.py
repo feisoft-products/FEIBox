@@ -15,7 +15,7 @@ print(a['BRANDING']['name'])
 print("Loading...")
 time.sleep(1)
 if os.name == 'nt':
-    os.system("color 8f")
+    os.system("color 2f")
     stdapi.clear()
     print(msg.STD_BOOT)
 else:

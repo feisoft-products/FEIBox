@@ -16,7 +16,7 @@ import argparse
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 # Constants.
 version = (0,8,1)
-versuffix = "build 445 (0.8.1.fprvint.ginger_pre.6)"
+versuffix = "build 446 (0.8.1.fprvint.ginger_pre.7)"
 __null__ = None
 __osenv__ = os.name
 indev_name = "Ginger"
@@ -25,8 +25,8 @@ lev =  False
 
 # Functions.
 def out(t :str):
-    "Printing within line. TODO: Deprecation: Will be deprecated in 0.8.1."
-    warnings.warn("Will be deprecated in 0.8.1", DeprecationWarning)
+    """Printing within line. TODO: Deprecation: Will be deprecated in 0.8.1.
+    The deprecation is cancelled."""
     print(t,end="")
     return
 
@@ -36,14 +36,17 @@ def outl(t :str):
     return
 
 def out_cmd(t :str):
-    "TODO: Feature-002: improved `out`."
+    """TODO: Feature-002: improved `out`.
+    Well, finally we gave up that."""
+    print(t)
 
 def set_env(cmdargs):
     "TODO: Feature-003: `set`."
     p = argparse.ArgumentParser(prog="env", description="""
     The command to set environment variables.
     """)
-    p.add_mutually_exclusive_group()
+    p.add_argument("NAME", dest="name",help="name of environment variable.")
+    p.add_argument("VALUE", dest="value",help="value of environment variable.")
     return
 
 def run_expr(expr :str):
@@ -64,6 +67,7 @@ def _get_passwd_from_file(pwd :str):
     return calc.hexdigest() == hsh
 
 def _change_passwd(oldpwd :str,newpwd :str):
+    """A deprecated function. Might be used again in the future."""
     a = 0
     if not isinstance(oldpwd,str) and isinstance(newpwd,str): return 3
     if len(newpwd) <= 6: a = 1
@@ -345,9 +349,15 @@ def load_cmd(cmd :str):
             _a = _out(cmd)
             return
         elif cmd == 'su':
-            _su()
+            if lev == True:
+                print("Your system is ALREADY LEVITATED.")
+            else:
+                _su()
         elif cmd.startswith("unsu"):
-            _unsu()
+            if lev == True:
+                _unsu()
+            else:
+                print("Your system is NOT LEVITATED.")
         elif cmd.startswith("identify"):
             if _identify(): print("Continue.")
             else: print("This is wrong.Try again.")
